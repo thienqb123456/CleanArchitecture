@@ -1,8 +1,7 @@
-﻿using System.Text.Json;
+﻿using ApplicationCore.Databases.Annotations;
 using System.Text.Json.Serialization;
-using ApplicationCore.Databases.Annotations;
 
-namespace Infrastructure.Models;
+namespace Domain;
 
 public abstract class BaseEntity
 {
@@ -32,9 +31,4 @@ public abstract class BaseEntity<T> : BaseEntity where T : class, new()
     [JsonPropertyName("updatedOn")]
     public DateTime? UpdatedOn { get; set; }
 
-    [JsonIgnore]
-    [DataObject(Nullable = false)]
-    public short? SystemStatus { get; set; }
-
-    public override string ToString() => JsonSerializer.Serialize(this);
 }

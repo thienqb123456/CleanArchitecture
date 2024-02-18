@@ -1,5 +1,5 @@
-﻿using Application.IRepositories;
-using Domain.Entities;
+﻿using Application.IRepositories.Cms;
+using Domain.Entities.Cms;
 
 namespace Infrastructure.Repositories
 {

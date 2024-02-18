@@ -1,12 +1,5 @@
-using Application.IRepositories;
-using Application.Services;
-using Application.Services.Interfaces;
-using ApplicationCore.Commons.NamedServices;
-using ApplicationCore.Databases;
-using ApplicationCore.Databases.Definitions;
-using Infrastructure.Models;
-using Infrastructure.Repositories;
-using Microsoft.Extensions.Caching.Memory;
+using Application;
+using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,21 +11,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-BaseEntity.Initialize(new DbFactory(DbEngine.PostgreSql, configuration["Connections:PostgreSql"]));
+builder.Services.AddApplicationServices();
 
-builder.Services.AddSingleton(typeof(IMemoryCache), typeof(MemoryCache));
+builder.Services.AddInfrastructureDependencies(configuration);
 
-builder.Services.AddNamed<DbFactory>(names =>
-{
-    //names.AddScoped("MySql", _ => new DbFactory(DbEngine.MySql, configuration["Connections:MySql"]));
-    names.AddScoped("PostgreSql", _ => new DbFactory(DbEngine.PostgreSql, configuration["Connections:PostgreSql"]));
-    //names.AddScoped("MicrosoftSql", _ => new DbFactory(DbEngine.MicrosoftSql, configuration["Connections:MicrosoftSql"]));
-});
+builder.Services.AddWebServices();
 
-
-builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
-
-builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
 
 var app = builder.Build();
 

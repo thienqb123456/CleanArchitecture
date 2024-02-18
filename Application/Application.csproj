@@ -14,4 +14,9 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IRepositories\Resources\" />
+    <Folder Include="Services\Resources\Interfaces\" />
+  </ItemGroup>
+
 </Project>

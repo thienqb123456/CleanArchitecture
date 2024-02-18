@@ -1,6 +1,6 @@
 ﻿using Application.IRepositories;
 
-namespace Application.Services.Implements;
+namespace Application.Services;
 
 public class BaseService<T>(ILogger<BaseService<T>> logger, IBaseRepository<T> repository) : IBaseService<T> where T : class, new()
 {

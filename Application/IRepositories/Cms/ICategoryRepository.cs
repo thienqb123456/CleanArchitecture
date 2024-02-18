@@ -1,6 +1,6 @@
-﻿using Domain.Entities;
+﻿using Domain.Entities.Cms;
 
-namespace Application.IRepositories
+namespace Application.IRepositories.Cms
 {
     public interface ICategoryRepository : IBaseRepository<Category>
     {
